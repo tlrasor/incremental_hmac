@@ -1,0 +1,9 @@
+name: incremental_hmac
+version: 0.1.0
+
+authors:
+  - Travis Rasor <travis@thathanka.org>
+
+crystal: 0.31.1
+
+license: MIT
