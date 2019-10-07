@@ -4,3 +4,4 @@ language: crystal
 script:
   - crystal spec
   - crystal tool format --check
+  - crystal run --release benchmark/hmac_benchmark.cr
