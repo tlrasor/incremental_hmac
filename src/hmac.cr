@@ -15,14 +15,14 @@ class OpenSSL::HMAC
     if LibCrypto.hmac_init_ex(@ctx, key_slice, key_slice.size, evp, nil) < 1
       raise("Could not initialize hmac")
     end
-  end
-
-  def finalize
-    LibCrypto.hmac_ctx_cleanup(@ctx)
+    @finalized = false
   end
 
   # Updates the HMAC state with *data*
   def update(data)
+    if @finalized
+      raise("HMAC has already been finalized")
+    end
     data_slice = data.to_slice
     if LibCrypto.hmac_update(@ctx, data_slice, data_slice.size) < 1
       raise("Could not update hmac")
@@ -43,6 +43,8 @@ class OpenSSL::HMAC
     if LibCrypto.hmac_final(@ctx, buffer, out buffer_len) < 1
       raise("Could not finalize hmac")
     end
+    LibCrypto.hmac_ctx_cleanup(@ctx)
+    @finalized = true
     buffer[0, buffer_len]
   end
 

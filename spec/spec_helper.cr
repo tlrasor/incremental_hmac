@@ -1,2 +1,2 @@
 require "spec"
-require "../src/hmac"
+require "../src/incremental_hmac"

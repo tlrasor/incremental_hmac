@@ -1,5 +1,7 @@
 # incremental_hmac
 
+[![Build Status](https://travis-ci.org/tlrasor/incremental_hmac.svg?branch=master)](https://travis-ci.org/tlrasor/incremental_hmac)
+
 The standard library's HMAC implementation is rather limited in that it can only work on data that has a `to_slice` method defined. This works fine for the typical web use cases for strings and byte buffers but does not scale well to calculating the HMAC of large files which are inconvenient to fit in memory.
 
 This shard monkey patches OpenSSL::HMAC and adds an incremental interface modeled on Ruby's OpenSSL::HMAC class. It does this by calling into the same LibCrypto wrapper that the standard library does and should be fairly safe for production use.
@@ -40,7 +42,7 @@ Do some dev and write some tests plz
 
 ## Contributing
 
-1. Fork it (<https://github.com/your-github-user/incremental_hmac/fork>)
+1. Fork it (<https://github.com/tlrasor/incremental_hmac/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
